@@ -1,0 +1,52 @@
+MLForge — contribution pack (based on Cmor-Proj-main.zip)
+=========================================================
+This archive contains only the newly created/modified files, not the full repository.
+
+RECOMMENDED: Make ONE pull request per improvement, in this order:
+
+PR 1: Cross-validation (new notebook, no existing code changed)
+  notebooks/04_cross_validation.ipynb
+  Answers: Are R² and classification accuracy stable across five folds?
+
+PR 2: L2 regularization (changes package behavior with a new optional argument)
+  src/mlforge/logistic_regression.py   [REPLACES/EDITS EXISTING FILE]
+  tests/test_logistic_regression.py    [ADDS TESTS TO EXISTING FILE]
+  notebooks/05_regularization.ipynb   [NEW]
+  Answers: Does an L2 penalty shrink weights or improve validation log loss?
+  With regularization_strength=0 (the default), existing behavior stays the same.
+
+PR 3: Classification evaluation (new notebook, no existing code changed)
+  notebooks/06_classification_analysis.ipynb
+  Answers: What kinds of errors occur and what does the threshold change?
+
+WORKFLOW:
+1) Install VS Code (and Python 3.11+) and GitHub Desktop.
+2) In GitHub Desktop, File > Clone Repository; clone the CURRENT team repo.
+3) Current Branch > New Branch; create a descriptive branch off main.
+4) Copy ONLY the files for the relevant PR into that cloned repo, preserving folders.
+   For PR 2, inspect teammates' latest code before replacing existing files.
+5) Run commands in the repo folder:
+     uv sync --locked --dev
+     uv run pytest -v
+   For notebooks: open in VS Code, choose .venv Python kernel, Run All.
+6) In GitHub Desktop, check the Changes tab; verify nothing unrelated changed.
+7) Enter a descriptive summary; Commit to your branch; Publish branch.
+8) Click Preview Pull Request / Create Pull Request; base should be main.
+9) Describe WHAT changed, WHY, and HOW you tested it. Ask team to review.
+
+VALIDATION OF THIS PACK:
+- Original project: 152 automated tests.
+- With optional L2 modification/tests: 167 automated tests passed.
+- All three notebooks were executed successfully with the attached project in
+  this environment. They should be re-executed in your own uv environment.
+- Cross-validation notebook observed mean diabetes validation R² = 0.4804
+  (fold SD 0.0457); mean cancer validation accuracy = 0.9780 (fold SD 0.0110).
+- Tested regularization strengths [0.0, 0.01, 0.1, 1.0]; validation log loss
+  selected 0.0 (the unregularized model). Do not claim L2 improved performance.
+- Classification analysis validation selected malignant threshold 0.50; the
+  test ROC-AUC for malignant was 0.9960. No claim of clinical utility.
+
+GitHub website editing is fine for small .py / .md files. Jupyter .ipynb files
+are JSON under the hood; edit them with VS Code/Jupyter, not as raw GitHub text.
+Do NOT replace the current team code blindly if teammates have since changed it.
+No branch, commit, or GitHub pull request was created by this process.
