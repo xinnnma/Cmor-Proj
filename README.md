@@ -9,6 +9,14 @@ The package provides NumPy Linear Regression and binary Logistic Regression.
 Three executed notebooks demonstrate exploration, preprocessing, modeling,
 and evaluation on held-out data, with saved results and figures.
 
+## Group Members
+
+- Xin
+- Huishan
+- Sandy
+- Jenny
+- Freya
+
 ## Project contents
 
 - Two reusable estimators implemented with NumPy, without scikit-learn models.
@@ -19,15 +27,6 @@ and evaluation on held-out data, with saved results and figures.
 Public repository: [xinnnma/Cmor-Proj](https://github.com/xinnnma/Cmor-Proj).
 The GitHub repository keeps the name `Cmor-Proj`; the project and Python
 package are named MLForge and `mlforge`, respectively.
-
-## Contributors
-
-The group should replace these placeholders with each member's actual name
-and agreed contributions, adding rows as needed. No assignments are implied.
-
-| Group member | Contributions |
-| --- | --- |
-| [Group member name] | [Contributions to be added by the group] |
 
 ## Project layout
 

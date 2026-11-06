@@ -108,9 +108,8 @@ shows optimization progress; test accuracy measures held-out predictions.
   cross-validation or hyperparameter search. They do not establish performance
   across splits or new populations. These are scope limitations, not missing
   requirements in the supplied rubric.
-- Replace contributor placeholders in the README with the group's actual
-  members and agreed contributions before submission. The placeholders do
-  not assign or claim anyone's work.
+- The README lists the five group members. Individual roles and
+  contributions are not assigned in this documentation.
 - Rehearse and deliver the final presentation, using the actual metrics and
   repository walkthrough. A prepared script alone does not satisfy delivery.
 
