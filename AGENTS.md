@@ -2,7 +2,7 @@
 
 ## Project Status
 
-XinML is a Python 3.11+ course project using a `src/xinml/` package layout, NumPy, uv, Hatchling, and pytest. It includes two algorithms, 152 tests, and three executed notebooks using bundled Diabetes and Breast Cancer datasets. The Phase 5 audit, final documentation, and presentation notes are complete, reviewed, and approved for publication. Preserve both algorithms, their tests, and useful notebook outputs. Subsequent work, commits, and pushes require explicit instructions. Presentation notes and the audit belong in `docs/`; actual presentation delivery remains the student's responsibility.
+MLForge — A Machine Learning Package Built from Scratch is a Python 3.11+ group course project using a `src/mlforge/` package layout, NumPy, uv, Hatchling, and pytest. Its local folder is `/Users/third/Desktop/MLForge`, and its public repository is `https://github.com/xinnnma/Cmor-Proj`. It includes two algorithms, 152 tests, and three executed notebooks using bundled Diabetes and Breast Cancer datasets. The Phase 5 audit, final documentation, and presentation notes are complete. Preserve both algorithms, their tests, and useful notebook outputs. Subsequent work, commits, and pushes require explicit instructions. Presentation notes and the audit belong in `docs/`; actual presentation delivery remains the group's responsibility.
 
 ## Working Rules
 
@@ -13,10 +13,10 @@ XinML is a Python 3.11+ course project using a `src/xinml/` package layout, NumP
 - If a check cannot be run, state why and identify the remaining validation needed.
 - Do not commit changes or create branches unless explicitly requested.
 - Do not add secrets, generated artifacts, or unrelated configuration to the repository.
-- Work only in XinML; do not modify the professor's course repository.
-- Do not configure a Git email, make a first commit, or publish to GitHub without the user's instructions. The user will provide a Rice email before the first commit.
+- Work only in MLForge; do not modify the professor's course repository or the Benzhou website.
+- Do not change the configured Git author identity or publish to GitHub without the user's instructions. Preserve existing commit history and historical authorship.
 - Keep real tests in `tests/` and notebooks in `notebooks/`. Do not add placeholder tests that imply algorithms work.
-- Notebook scalers and models must fit training rows only. Use installed XinML models; scikit-learn is for bundled datasets and utilities. NumPy remains the only runtime dependency; notebook tools belong in the development group.
+- Notebook scalers and models must fit training rows only. Use installed MLForge models; scikit-learn is for bundled datasets and utilities. NumPy remains the only runtime dependency; notebook tools belong in the development group.
 
 ## Verified Commands
 

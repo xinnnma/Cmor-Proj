@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 from numpy.testing import assert_allclose
 
-from xinml import LinearRegression
+from mlforge import LinearRegression
 
 
 @pytest.fixture

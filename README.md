@@ -1,6 +1,6 @@
-# XinML — Machine Learning from Scratch
+# MLForge — A Machine Learning Package Built from Scratch
 
-XinML is a final project for **CMOR 438 / INDE 577: Data Science & Machine
+MLForge is a group final project for **CMOR 438 / INDE 577: Data Science & Machine
 Learning** at Rice University, taught by Professor Randy R. Davila. The goal is
 to build a small, understandable Python machine learning package and explain
 its use through Jupyter notebooks.
@@ -16,12 +16,23 @@ and evaluation on held-out data, with saved results and figures.
 - 152 pytest tests covering numerical results, input validation, and edge cases.
 - Installation and usage examples, a final audit, and presentation notes.
 
-Public repository: [xinnnma/XinML](https://github.com/xinnnma/XinML).
+Public repository: [xinnnma/Cmor-Proj](https://github.com/xinnnma/Cmor-Proj).
+The GitHub repository keeps the name `Cmor-Proj`; the project and Python
+package are named MLForge and `mlforge`, respectively.
+
+## Contributors
+
+The group should replace these placeholders with each member's actual name
+and agreed contributions, adding rows as needed. No assignments are implied.
+
+| Group member | Contributions |
+| --- | --- |
+| [Group member name] | [Contributions to be added by the group] |
 
 ## Project layout
 
 ```text
-XinML/
+MLForge/
 ├── AGENTS.md
 ├── .gitignore
 ├── README.md
@@ -31,7 +42,7 @@ XinML/
 │   ├── FINAL_AUDIT.md
 │   └── PRESENTATION.md
 ├── src/
-│   └── xinml/
+│   └── mlforge/
 │       ├── __init__.py
 │       ├── linear_regression.py
 │       └── logistic_regression.py
@@ -46,7 +57,7 @@ XinML/
     └── test_logistic_regression.py
 ```
 
-`src/xinml/` holds reusable package code. `notebooks/` contains the course
+`src/mlforge/` holds reusable package code. `notebooks/` contains the course
 demonstrations, and `tests/` contains the unit tests. `uv.lock` records
 resolved dependency versions for a reproducible environment.
 
@@ -56,18 +67,18 @@ Requires Python **3.11 or newer** and [uv](https://docs.astral.sh/uv/).
 For a new checkout:
 
 ```bash
-git clone https://github.com/xinnnma/XinML.git
-cd XinML
+git clone https://github.com/xinnnma/Cmor-Proj.git MLForge
+cd MLForge
 ```
 
-From the XinML project folder, install the locked environment:
+From the MLForge project folder, install the locked environment:
 
 ```bash
 uv sync --locked --dev
-uv run --locked python -c "import xinml; print(xinml.__file__)"
+uv run --locked python -c "import mlforge; print(mlforge.__file__)"
 ```
 
-`uv sync` creates a local `.venv` and installs XinML in editable mode along
+`uv sync` creates a local `.venv` and installs MLForge in editable mode along
 with NumPy and the development tools. Changes to package source files
 are then available without reinstalling the package. See the
 [uv project documentation](https://docs.astral.sh/uv/concepts/projects/config/)
@@ -96,7 +107,7 @@ After local setup, run this example in Python:
 
 ```python
 import numpy as np
-from xinml import LinearRegression
+from mlforge import LinearRegression
 
 X = np.array([[0.0], [1.0], [2.0], [3.0]])
 y = np.array([1.0, 3.0, 5.0, 7.0])  # y = 2x + 1
@@ -155,7 +166,7 @@ to avoid taking the logarithm of a probability rounded to zero.
 
 ```python
 import numpy as np
-from xinml import LogisticRegression
+from mlforge import LogisticRegression
 
 X = np.array([-3.0, -2.0, -1.0, 1.0, 2.0, 3.0])
 y = np.array([0, 0, 0, 1, 1, 1])
@@ -187,7 +198,7 @@ Input shapes and finite numeric checks match Linear Regression. Training
 requires both classes 0 and 1; evaluation labels may contain only one class.
 Invalid labels or parameters raise `ValueError`. Prediction methods and
 scoring raise `RuntimeError` before fitting. Both models are available with
-`from xinml import LinearRegression, LogisticRegression`.
+`from mlforge import LinearRegression, LogisticRegression`.
 
 This model has a linear decision boundary and supports binary targets only.
 It does not include regularization, automatic feature scaling, or early
@@ -202,11 +213,11 @@ range raises `ValueError` with guidance to scale inputs or reduce the step size.
 | Notebook | Dataset | Demonstrates |
 | --- | --- | --- |
 | [01_data_exploration.ipynb](notebooks/01_data_exploration.ipynb) | Diabetes | Dimensions, descriptive statistics, missing values, plots, splitting, and scaling. |
-| [02_linear_regression.ipynb](notebooks/02_linear_regression.ipynb) | Diabetes | XinML least squares, R², MSE, RMSE, and actual-versus-predicted values. |
-| [03_logistic_regression.ipynb](notebooks/03_logistic_regression.ipynb) | Breast Cancer | XinML binary classification, probabilities, accuracy, confusion matrix, and training loss. |
+| [02_linear_regression.ipynb](notebooks/02_linear_regression.ipynb) | Diabetes | MLForge least squares, R², MSE, RMSE, and actual-versus-predicted values. |
+| [03_logistic_regression.ipynb](notebooks/03_logistic_regression.ipynb) | Breast Cancer | MLForge binary classification, probabilities, accuracy, confusion matrix, and training loss. |
 
 Install all notebook dependencies with `uv sync --locked --dev`. In VS Code,
-open XinML, use the Python and Jupyter extensions, open a notebook, and choose
+open MLForge, use the Python and Jupyter extensions, open a notebook, and choose
 this project's `.venv` interpreter in **Select Kernel**. Restart the kernel
 and select **Run All** to reproduce its outputs. Each notebook is independent;
 the numerical order is the suggested reading order.
@@ -215,7 +226,7 @@ Both datasets are bundled with scikit-learn. After the environment is
 installed, notebook execution requires no internet or external dataset files.
 Splits use `random_state=42`. Diabetes is loaded with `scaled=False`, and all
 scalers and models are fitted only on training rows. The Breast Cancer split
-is stratified. Scikit-learn supplies datasets and utilities; XinML supplies
+is stratified. Scikit-learn supplies datasets and utilities; MLForge supplies
 both trained models. Outputs and figures are saved for GitHub viewing.
 
 See [notebooks/README.md](notebooks/README.md) for terminal execution,
@@ -268,4 +279,4 @@ on scikit-learn; the notebooks use it for datasets and utilities.
 and answers to likely questions. The [final audit](docs/FINAL_AUDIT.md) maps
 the supplied requirements to repository evidence and records validation and
 remaining submission tasks. Preparing these notes does not replace delivering
-the final presentation.
+the group's final presentation.

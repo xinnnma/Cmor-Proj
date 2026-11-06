@@ -11,7 +11,7 @@ validation, numerical stability, refitting, and convergence to a known
 nonseparable solution. Datasets are deterministic; numerical assertions use
 tolerances. The existing Linear Regression tests remain unchanged.
 
-Name test files `test_*.py` and import the installed `xinml` package. From the
+Name test files `test_*.py` and import the installed `mlforge` package. From the
 project root, run `uv run pytest -v`.
 
 Numerical assertions use floating-point tolerances. Tests import the installed
