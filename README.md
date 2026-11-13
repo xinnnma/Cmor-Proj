@@ -51,9 +51,9 @@ MLForge/
 │   ├── 02_linear_regression.ipynb
 │   └── 03_logistic_regression.ipynb
 └── tests/
-    ├── README.md
     ├── test_linear_regression.py
-    └── test_logistic_regression.py
+    ├── test_logistic_regression.py
+    └── test_reference_consistency.py
 ```
 
 `src/mlforge/` holds reusable package code. `notebooks/` contains the course
@@ -263,14 +263,29 @@ Run the tests:
 uv run pytest -v
 ```
 
-Tests cover known coefficients, unseen predictions, multiple features,
-intercept handling, noisy least squares, R², input validation, unfitted
-models, and rank-deficient designs. Logistic Regression tests cover binary
-training, probability shapes and class ordering, accuracy, optional
-intercepts, input and parameter validation, numerical stability, and
-convergence against a known solution. Numerical checks use floating-point
-tolerances and deterministic datasets. The models and unit tests do not rely
-on scikit-learn; the notebooks use it for datasets and utilities.
+The tests live in `tests/` and are grouped by file:
+
+- `test_linear_regression.py` checks the NumPy model against analytical
+  solutions: predictions, multiple features, optional intercepts, noisy least
+  squares, R², invalid inputs, unfitted models, rank-deficient and
+  underdetermined designs, and refitting.
+- `test_logistic_regression.py` checks binary training, predictions,
+  probability shapes and class ordering, accuracy, optional intercepts, label
+  and parameter validation, numerical stability, refitting, and convergence to
+  a known nonseparable solution.
+- `test_reference_consistency.py` compares both public models with independent
+  reference calculations on deterministic synthetic data: `numpy.linalg.lstsq`
+  for correlated and rank-deficient Linear Regression designs, and loss
+  decrease and probability validity for Logistic Regression.
+
+Datasets are deterministic, and numerical assertions use floating-point
+tolerances. The models and unit tests do not rely on scikit-learn; the
+notebooks use it for datasets and utilities.
+
+When adding tests, name files `test_*.py`, import the installed `mlforge`
+package, and put them in `tests/`. Pytest only collects from that folder, so
+a test file placed elsewhere will not run in CI. Add real tests alongside
+future algorithms; do not add placeholder passing tests.
 
 ## Presentation and audit
 
