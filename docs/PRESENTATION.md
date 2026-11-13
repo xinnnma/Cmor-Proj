@@ -2,6 +2,10 @@
 
 ## Presentation notes
 
+Optional reference material, updated November 13, 2026. The final deliverable
+is the GitHub repository; no presentation is required, per the team's
+instructor update. These notes are retained for a possible walkthrough.
+
 Aim for about four minutes at a comfortable pace. The eight sections below
 form the spoken script; the questions afterward are preparation material.
 Keep the repository and saved notebooks open before starting. Group members
@@ -19,7 +23,7 @@ tests, and notebook examples.
 ## 2. Repository and package structure — 0:25–0:50
 
 The public repository is github.com/xinnnma/Cmor-Proj. The reusable code is in
-`src/mlforge`, the tests are in `tests`, and the three demonstrations are in
+`src/mlforge`, the tests are in `tests`, and the four demonstrations are in
 `notebooks`. The README explains installation and usage. The commit history
 records the setup, each algorithm, and the notebooks. Both models are imported
 directly from `mlforge`.
@@ -47,7 +51,9 @@ loss so we can inspect optimization progress.
 
 The first notebook explores the Diabetes data. The second uses all ten
 Diabetes features for regression. The third classifies the Breast Cancer
-data using thirty features. These datasets come bundled with scikit-learn,
+data using thirty features. The fourth notebook adds five-fold cross-validation
+within each training partition, with a fresh scaler and model in each fold.
+These datasets come bundled with scikit-learn,
 but the trained models are MLForge implementations. We split the data before
 fitting scalers or models, and fit them only on training rows. The fixed
 random seed and stratified classification split make the examples reproducible.
@@ -59,15 +65,17 @@ On 89 held-out Diabetes rows, Linear Regression achieved an R-squared of
 rows, Logistic Regression classified 110 correctly, giving 96.49 percent
 accuracy. These are different metrics for different tasks, so we do not compare
 them directly. The confusion matrix includes one malignant case predicted as
-benign. Across the three notebooks, eight figures help explain the data,
-prediction errors, and training loss.
+benign. Five-fold validation gives mean Diabetes R-squared 0.4804 with fold
+standard deviation 0.0457, and mean Breast Cancer accuracy 0.9780 with fold
+standard deviation 0.0110. Across the four notebooks, ten figures help explain
+the data, prediction errors, training loss, and variation across folds.
 
 ## 7. Tests and reproducibility — 3:20–3:55
 
-All 152 pytest tests pass. They check known solutions, predictions, invalid
+All 156 pytest tests pass. They check known solutions, predictions, invalid
 inputs, unfitted models, and numerical edge cases. Logistic tests also check
 gradient updates and convergence to a known solution. The lockfile records
-dependencies. In a fresh environment, all three notebooks were rerun
+dependencies. In the locked project environment, all four notebooks were rerun
 without dataset downloads, and both README examples were checked. The package's
 only runtime dependency is NumPy; notebook and test tools are development
 dependencies.
@@ -76,8 +84,9 @@ dependencies.
 
 The models assume linear relationships or a linear decision boundary.
 Logistic Regression is binary only, uses a fixed number of updates, and has
-no regularization or automatic scaling. Each notebook uses one held-out
-split, so the results have limited scope. MLForge shows the full path from
+no regularization or automatic scaling. The fourth notebook estimates variation
+across five training folds, but results from these two datasets still have
+limited scope. MLForge shows the full path from
 mathematical ideas to reusable code, reliable tests, and interpretable examples.
 
 ## Five likely questions
@@ -95,7 +104,9 @@ scikit-learn estimator.
 We split before exploration and preprocessing. Diabetes loads raw features
 with `scaled=False`, so the loader does not normalize using the full dataset.
 The scaler learns only training means and standard deviations, and the models
-fit only training rows. Test labels are used for evaluation, with model
+fit only training rows. Cross-validation fits a new scaler and model using
+each fold's training rows, excluding validation and outer test rows.
+Test labels are used for evaluation, with model
 settings fixed beforehand.
 
 ### 3. What do R² of 0.4526 and accuracy of 96.49% mean?
@@ -121,6 +132,7 @@ global convergence for every dataset or test performance.
 
 The simple models have linear structure, no regularization, and no automatic
 feature scaling. Logistic Regression handles only labels 0 and 1 and does not
-stop early. A single split does not measure variation across splits or new
-populations. If extending the project, we would first consider cross-validation
-and regularization, while keeping the current implementation easy to explain.
+stop early. Five-fold cross-validation estimates variation within the training
+partition; it does not establish performance on new populations. If extending
+the project, we could consider regularization while keeping the implementation
+easy to explain.

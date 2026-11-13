@@ -2,7 +2,7 @@
 
 ## Project Status
 
-MLForge — A Machine Learning Package Built from Scratch is a Python 3.11+ group course project using a `src/mlforge/` package layout, NumPy, uv, Hatchling, and pytest. Its local folder is `/Users/third/Desktop/MLForge`, and its public repository is `https://github.com/xinnnma/Cmor-Proj`. It includes two algorithms, 152 tests, and three executed notebooks using bundled Diabetes and Breast Cancer datasets. The Phase 5 audit, final documentation, and presentation notes are complete. Preserve both algorithms, their tests, and useful notebook outputs. Subsequent work, commits, and pushes require explicit instructions. Presentation notes and the audit belong in `docs/`; actual presentation delivery remains the group's responsibility.
+MLForge — A Machine Learning Package Built from Scratch is a Python 3.11+ group course project using a `src/mlforge/` package layout, NumPy, uv, Hatchling, and pytest. Its local folder is `/Users/third/Desktop/MLForge`, and its public repository is `https://github.com/xinnnma/Cmor-Proj`. It includes two algorithms, 156 verified tests, and four executed notebooks using bundled Diabetes and Breast Cancer datasets, including five-fold cross-validation with preprocessing fitted within each fold. Preserve both algorithms, teammates' contributions and authorship, tests, and useful notebook outputs. Final integration changes are local on `final-integration`; do not commit, merge, or push without explicit approval. The final deliverable is the GitHub repository; no presentation is required, per the team's November 13, 2026 instructor update. Audits, the integration report, and optional historical presentation notes belong in `docs/`.
 
 ## Working Rules
 

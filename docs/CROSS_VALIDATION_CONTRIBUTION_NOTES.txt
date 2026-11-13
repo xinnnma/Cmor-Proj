@@ -1,3 +1,10 @@
+ARCHIVED CONTRIBUTION NOTES — November 13, 2026
+The original contribution-pack text below is preserved for provenance.
+Only the cross-validation notebook was integrated from this pack. The optional
+L2 and classification-analysis proposals, extra notebook names, and test counts
+below describe that pack, not the current MLForge deliverable. Current results
+and scope are documented in README.md and docs/FINAL_INTEGRATION.md.
+
 MLForge — contribution pack (based on Cmor-Proj-main.zip)
 =========================================================
 This archive contains only the newly created/modified files, not the full repository.

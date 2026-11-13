@@ -15,15 +15,24 @@ and figures.
 - Xin
 - Huishan
 - Sandy
-- Jenny 
+- Jenny
 - Freya
+
+Git history records Xin's package, models, original tests and notebooks;
+Huishan's evaluation and documentation updates; Sandy's reference tests and
+GitHub Actions workflow; Jenny's cross-validation notebook; and Freya's README
+and testing guidance. Commit evidence appears in the
+[integration report](docs/FINAL_INTEGRATION.md#verified-contributions).
 
 ## Project contents
 
 - Two reusable estimators implemented with NumPy, without scikit-learn models.
 - Four independent Jupyter notebooks with ten saved figures.
 - 156 pytest tests covering numerical results, input validation, and edge cases.
-- Installation and usage examples, a final audit, and presentation notes.
+- Installation and usage examples, a final audit, and an integration report.
+
+The final deliverable is this GitHub repository. No presentation is required,
+per the team's instructor update.
 
 Public repository: [xinnnma/Cmor-Proj](https://github.com/xinnnma/Cmor-Proj).
 The GitHub repository keeps the name `Cmor-Proj`; the project and Python
@@ -34,12 +43,17 @@ package are named MLForge and `mlforge`, respectively.
 ```text
 MLForge/
 ├── AGENTS.md
+├── .github/
+│   └── workflows/
+│       └── ci.yml
 ├── .gitignore
 ├── README.md
 ├── pyproject.toml
 ├── uv.lock
 ├── docs/
+│   ├── CROSS_VALIDATION_CONTRIBUTION_NOTES.txt
 │   ├── FINAL_AUDIT.md
+│   ├── FINAL_INTEGRATION.md
 │   └── PRESENTATION.md
 ├── src/
 │   └── mlforge/
@@ -53,6 +67,7 @@ MLForge/
 │   ├── 03_logistic_regression.ipynb
 │   └── 04_cross_validation.ipynb
 └── tests/
+    ├── README.md
     ├── test_linear_regression.py
     ├── test_logistic_regression.py
     └── test_reference_consistency.py
@@ -244,6 +259,14 @@ These results do not establish performance on new populations.
 | Linear Regression — Diabetes | 353 / 89 | R² **0.4526**, MSE **2900.1936**, RMSE **53.8534**, MAE **42.7941**. Training-mean baseline: MAE **64.0065**, RMSE **73.2225**. |
 | Logistic Regression — Breast Cancer | 455 / 114 | Accuracy **96.49%** (110/114), macro F1 **0.9627**, malignant-class recall **0.9762**. |
 
+Five-fold cross-validation uses only the outer training partitions. Diabetes
+validation R² is **0.4804 ± 0.0457**; Breast Cancer validation accuracy is
+**0.9780 ± 0.0110**. The ± values are sample standard deviations across five
+folds (`ddof=1`), not confidence intervals. Their respective training-only
+baselines average R² **−0.0273** and accuracy **0.6264**. The final holdout
+checks in notebook 04 reproduce the results above without using test rows
+for cross-validation or tuning.
+
 R² compares squared prediction error with predicting the test target mean;
 accuracy measures the fraction of correct class labels. These scores describe
 different tasks and should not be compared directly. RMSE is expressed in the
@@ -264,7 +287,7 @@ uv build
 Run the tests:
 
 ```bash
-uv run pytest -v
+uv run --locked pytest -v
 ```
 
 The tests live in `tests/` and are grouped by file:
@@ -290,4 +313,12 @@ When adding tests, name files `test_*.py`, import the installed `mlforge`
 package, and put them in `tests/`. Pytest only collects from that folder, so
 a test file placed elsewhere will not run in CI. Add real tests alongside
 future algorithms; do not add placeholder passing tests.
+
+The current verified suite has **156 passing cases**: 57 Linear Regression,
+95 Logistic Regression, and four reference checks. [GitHub Actions](.github/workflows/ci.yml)
+installs the locked environment, checks both imports, and runs the complete
+suite on Ubuntu with Python 3.12. The [final audit](docs/FINAL_AUDIT.md)
+maps validation to the rubric; the [integration report](docs/FINAL_INTEGRATION.md)
+records commit evidence, results, and local changes awaiting approval.
+Historical [presentation notes](docs/PRESENTATION.md) are optional reference material.
 
