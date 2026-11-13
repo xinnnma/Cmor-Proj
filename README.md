@@ -287,10 +287,3 @@ package, and put them in `tests/`. Pytest only collects from that folder, so
 a test file placed elsewhere will not run in CI. Add real tests alongside
 future algorithms; do not add placeholder passing tests.
 
-## Presentation and audit
-
-[Presentation notes](docs/PRESENTATION.md) provide a 3–5 minute walkthrough
-and answers to likely questions. The [final audit](docs/FINAL_AUDIT.md) maps
-the supplied requirements to repository evidence and records validation and
-remaining submission tasks. Preparing these notes does not replace delivering
-the group's final presentation.
