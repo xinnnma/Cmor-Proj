@@ -1,5 +1,8 @@
 # Unit tests
 
+The November 13, 2026 integration run verified **156 passing cases**:
+57 Linear Regression, 95 Logistic Regression, and four reference checks.
+
 `test_linear_regression.py` checks the implemented NumPy model against
 analytical solutions. Coverage includes predictions, multiple features,
 optional intercepts, noisy least squares, R², invalid inputs, unfitted models,
@@ -20,7 +23,9 @@ and decreases overall, and that predicted probabilities are finite,
 lie between zero and one, and sum to one for each sample.
 
 Name test files `test_*.py` and import the installed `mlforge` package. From the
-project root, run `uv run pytest -v`.
+project root, run `uv run --locked pytest -v`. GitHub Actions runs this same
+suite with `pytest -q` on Ubuntu and Python 3.12 after installing the locked
+development environment and checking both public model imports.
 
 Numerical assertions use floating-point tolerances. Tests import the installed
 package and do not require scikit-learn. Add real tests alongside future

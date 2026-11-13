@@ -2,117 +2,101 @@
 
 ## Final project audit
 
-Original audit date: October 20, 2026. Naming and group-project wording updated
-November 6, 2026. This review uses the requirements and weighted
-rubric supplied for CMOR 438 / INDE 577. It does not assume
-additional instructor requirements or predict a grade.
+Integration audit: **November 13, 2026**, based on published `main` commit
+`0e3e7096218b985c59c52420caa3a7e644d3bf6e` and the local corrections on
+`final-integration`. This supersedes the October 20 audit's counts and
+presentation requirement. The final deliverable is the GitHub repository;
+**no presentation is required**, per the team's instructor update.
+Historical presentation notes remain optional reference material.
 
-Historical snapshot: the validation below was performed before the group
-project rename and before the final documentation commit, when four commits
-and 15 files were published. The final documentation was subsequently
-published as a fifth commit, adding the two files in `docs/`. Current links
-and commands use the MLForge name; that name was not in use at the original
-audit. Historical counts below describe that dated snapshot, not the current
-commit count. The rename preserves the repository and its existing history.
+The [integration report](FINAL_INTEGRATION.md) records teammate commit evidence,
+full metrics, GitHub Actions status, and the changes awaiting publication
+approval. This audit maps the supplied rubric to verified evidence; it does
+not predict an awarded grade.
 
 ## Required deliverables
 
 | Requirement | Status | Repository evidence |
 | --- | --- | --- |
-| Multiple Jupyter notebooks demonstrating machine learning | Complete | Three executed notebooks in [`notebooks/`](../notebooks/README.md). |
-| Exploration, preprocessing, modeling, and evaluation | Complete | Training-data statistics and plots; train/test splitting and scaling; regression and classification fits; held-out metrics and error plots. |
+| Multiple Jupyter notebooks demonstrating machine learning | Complete | Four independent, executed notebooks in [`notebooks/`](../notebooks/README.md), with ten saved figures. |
+| Exploration, preprocessing, modeling, and evaluation | Complete | Training-data exploration, training-only standardization, held-out regression and classification evaluation, baselines, and five-fold training-partition cross-validation. |
 | Custom Python package with at least two reusable algorithms | Complete | NumPy [`LinearRegression`](../src/mlforge/linear_regression.py) and [`LogisticRegression`](../src/mlforge/logistic_regression.py), exported from `mlforge`. |
-| README explaining installation and package use | Complete | [`README.md`](../README.md) documents both models, parameters, methods, input rules, limitations, and executable examples. |
-| Comprehensive pytest tests | Complete | 152 passing cases: 57 Linear Regression and 95 Logistic Regression cases; see [`tests/README.md`](../tests/README.md). |
-| Practical notebook use of the package | Complete | Notebooks 02 and 03 import and train the installed MLForge estimators. |
-| Separate public GitHub repository | Complete | [xinnnma/Cmor-Proj](https://github.com/xinnnma/Cmor-Proj), public, default branch `main`. |
-| Organized structure and clear commit history | Complete | `src/`, `tests/`, `notebooks/`, configuration, lockfile, and preserved milestone commits recording the setup, algorithms, examples, and final documentation. |
-| Final presentation explaining the repository and work | Partially complete | [`PRESENTATION.md`](PRESENTATION.md) contains a 3–5 minute group script and five likely questions. The group must still deliver the presentation. |
-
-No supplied technical deliverable is missing. The final documentation was
-reviewed, approved, and published; presentation delivery remains outstanding.
+| Installation and package usage documentation | Complete | [`README.md`](../README.md) includes locked setup, both executable examples, model APIs, mathematical descriptions, and limitations. |
+| Comprehensive pytest tests | Complete | **156 passing cases**: 57 Linear Regression, 95 Logistic Regression, and four reference checks in [`tests/`](../tests/README.md). |
+| Practical notebook use of the package | Complete | Notebooks 02–04 train installed MLForge estimators; scikit-learn supplies datasets and utilities. |
+| Public GitHub repository and preserved contributions | Complete; local corrections await approval | [xinnnma/Cmor-Proj](https://github.com/xinnnma/Cmor-Proj), public, default branch `main`; all five members' real contributions remain in history and the working tree. |
+| Automated testing | Complete | [Workflow](../.github/workflows/ci.yml) checks both imports and runs the full test suite with the locked environment on Ubuntu/Python 3.12. |
 
 ## Rubric review
 
-| Category | Weight | Evidence and remaining considerations |
+| Category | Weight | Verified evidence and practical limits |
 | --- | --- | --- |
-| Functionality / Implementation | 40% | Both reusable algorithms support multiple features, optional intercepts, fitting, prediction, scoring, validation, and meaningful unfitted errors. Least squares uses `numpy.linalg.lstsq`; binary Logistic Regression uses an explicit batch gradient descent loop and stable probability/loss calculations. No scikit-learn estimator implements either algorithm. |
-| Documentation / Readability | 20% | Concise mathematical docstrings, readable estimator code, detailed README examples, notebook explanations, an audit, and presentation notes. Final documentation was reviewed, approved, and published. |
-| Testing / Reliability | 20% | All 152 tests pass, including analytical solutions, invalid inputs, rank deficiency, extreme values, and convergence checks. Fresh-environment notebook execution and package builds also pass. No numerical coverage percentage or platform matrix was measured. |
-| Examples / Usability | 10% | Two executable README examples, three independent notebooks, saved tables and eight figures, bundled datasets, and reproducible setup and execution instructions. |
-| Repository Quality | 10% | Public `main` branch, four preserved milestone commits at the audit snapshot, source layout, `pyproject.toml`, `uv.lock`, and effective ignore rules. No tracked environment/cache files or matching credential patterns were found. The approved final documentation is published in a separate fifth commit. |
+| Functionality and Implementation | 40% | Two working NumPy estimators with optional intercepts, prediction, scoring, input validation, and meaningful unfitted errors. Least squares uses `numpy.linalg.lstsq`; binary Logistic Regression uses explicit batch gradient descent with stable sigmoid and loss calculations. Model code and behavior were preserved. |
+| Documentation and Readability | 20% | Mathematical docstrings, runnable README examples, four notebook descriptions, verified metrics, accurate group attribution, and corrected submission requirements. All local documentation links resolve. |
+| Testing and Reliability | 20% | 156 passing tests covering analytical results, invalid inputs, rank deficiency, numerical stability, gradient updates, and convergence. All notebooks execute; repeated fits reproduce results; package builds and installed-wheel checks pass. Published-head CI is green. No coverage percentage was measured. |
+| Examples and Usability | 10% | Two verified README examples, four independent notebooks, ten rendered figures, bundled datasets, and locked reproduction instructions. |
+| Repository Quality | 10% | Organized `src/`, `tests/`, `notebooks/`, `docs/`, workflow, lockfile, ignore rules, and 25 preserved commits through the reviewed head. The old contribution-pack note is archived in `docs/`, with its original text preserved. No duplicate notebooks or tracked cache/environment/build artifacts remain. |
 
-These weights describe the supplied rubric, not awarded scores.
+Estimated compliance is strong across all five supplied categories, covering
+100% of the rubric's stated weight. These are evidence assessments, not
+awarded points. No verified missing technical deliverable was found.
 
-## Validation performed at the original audit
+## Current validation
 
-- Created a separate Python **3.11.4** virtual environment with system site
-  packages disabled. `uv sync --locked --dev` installed the project package and the locked
-  development dependencies; the audit used `--offline` and the existing uv
-  download cache. This verified a fresh installed environment, not a machine
-  without any cached downloads. A first installation needs package-index
-  access or a populated cache.
-- Ran `uv run pytest -v` in that environment: **152 passed**. Both public
-  model imports and both Python examples copied directly from the README
-  executed successfully.
-- Registered an isolated project kernel and used the documented nbconvert
-  command to execute temporary copies of all three notebooks from top to
-  bottom. The kernels used the fresh environment, with external socket
-  connections blocked during execution. No dataset download was required.
-- All three notebooks reproduced their saved metrics with **zero execution
-  errors** and **eight valid PNG figures**. Validation checked disjoint train
-  and test indices, scaler statistics learned from training rows, custom model
-  types, and the installed package path. Original notebooks were unchanged.
-- Verified `uv build`: both a source distribution and a wheel build
-  successfully. Build artifacts were kept outside the repository. Archive
-  checks found both model modules and no environment/cache files.
-- Compared GitHub's `main` tree and commit list with local `HEAD`: all **15
-  published files** and all **four commits** matched. The repository is
-  public. These checks precede the separate final documentation publication.
-- Reviewed tracked files and proposed documentation for credential filenames,
-  private-key/token patterns, and generated artifacts. No matches were found.
-  Environment, cache, build, temporary, and local `.env` paths are ignored.
-  Local documentation links resolve.
-
-The audit used macOS and Python 3.11.4. The declared Python requirement is
-3.11 or newer, but other interpreters and operating systems were not tested.
+- `uv sync --locked --dev` succeeds in the existing project environment:
+  macOS, Python **3.11.4**, NumPy **2.4.6**, pytest **9.1.1**. The lockfile and
+  dependency declarations remain unchanged; NumPy is the only runtime dependency.
+- `uv run --locked pytest -v`: **156 passed**, zero failures or skips.
+- All four notebooks execute from beginning to end in separate kernels using
+  the project's `.venv` interpreter. Temporary audit instrumentation blocks
+  external socket connections, checks the installed package path, records
+  scaler/model fits, and verifies their actual training inputs.
+- Every scaler learns only its training rows. Notebook 04 uses a fresh scaler
+  and MLForge estimator for each fold, validates every training row exactly
+  once, and excludes outer test rows from every fold. Baseline predictions use
+  only fold training labels. Independent calculations reproduce all fold scores.
+- Repeated Linear and Logistic Regression fits reproduce coefficients,
+  intercepts, predictions, and Logistic Regression loss histories within
+  numerical tolerances. All ten PNG figures decode and render correctly.
+- Useful saved notebook results and figures are preserved. Re-execution matches
+  saved numerical/text results; the only extra stream was a one-time Matplotlib
+  font-cache notice, which was not saved to the repository.
+- Both Python examples copied from the README pass. The source distribution
+  and wheel build successfully; installed-wheel imports and tests pass.
+- GitHub Actions [run 43503882226](https://github.com/xinnnma/Cmor-Proj/actions/runs/43503882226)
+  succeeds for the exact published head. Local unpublished changes have not
+  triggered a new run. CI covers imports and tests; notebook execution and
+  package builds were verified locally.
 
 ## Verified notebook results
 
 | Notebook | Data and split | Reproduced result | Figures |
 | --- | --- | --- | --- |
-| 01 — Data exploration | Diabetes: 442 rows, 10 features; 353 train / 89 test | Training statistics, no missing training values, correlations, and training-only standardization. | 3 |
-| 02 — Linear Regression | Same raw Diabetes data and split | R² **0.4526**, MSE **2900.1936**, RMSE **53.8534**. | 2 |
-| 03 — Logistic Regression | Breast Cancer: 569 rows, 30 features; 455 train / 114 test, stratified | Accuracy **96.49%** (110 / 114); confusion matrix **`[[41, 1], [3, 69]]`**. | 3 |
+| 01 — Data exploration | Diabetes: 442 rows, 10 features; 353 train / 89 test | No missing training values; training-only statistics, correlations, and standardization. | 3 |
+| 02 — Linear Regression | Raw Diabetes, same split | R² **0.4526**, MSE **2900.1936**, RMSE **53.8534**, MAE **42.7941**; training-mean baseline MAE **64.0065**, RMSE **73.2225**. | 3 |
+| 03 — Logistic Regression | Breast Cancer: 569 rows, 30 features; 455 train / 114 test, stratified | Accuracy **96.49%** (110/114), macro F1 **0.9627**, malignant recall **0.9762**; confusion matrix **`[[41, 1], [3, 69]]`**. | 3 |
+| 04 — Cross-validation | Five folds within each outer training partition | Diabetes R² **0.4804 ± 0.0457**; Breast Cancer accuracy **0.9780 ± 0.0110**. Final holdout results match notebooks 02–03. | 1 |
 
-Diabetes loads with `scaled=False`. All splits use `random_state=42`, and
-scalers and models fit training rows only. Scikit-learn supplies bundled
-datasets and supporting utilities, while MLForge supplies the trained models.
+Cross-validation ± values are sample fold standard deviations (`ddof=1`),
+not confidence intervals. Diabetes loads with `scaled=False`; all splits use
+`random_state=42`. Classification labels and confusion-matrix order are
+**0 = malignant, 1 = benign**, with true labels as rows. One malignant case
+is predicted benign. Training cross-entropy decreases from **0.693147** to
+**0.050878** over 2,000 updates at learning rate 0.1.
 
-R² compares regression squared error with predicting the test target mean;
-it is not classification accuracy. RMSE has the target's original units.
-For classification, labels and matrix order are **0 = malignant, 1 = benign**,
-with true labels as rows and predictions as columns. The four mistakes include
-one malignant case predicted as benign. Training cross-entropy falls from
-**0.693147** to **0.050878** over 2,000 updates with learning rate 0.1. This
-shows optimization progress; test accuracy measures held-out predictions.
+## Limitations and submission readiness
 
-## Limitations and remaining submission tasks
+The models retain their documented linear structure. Logistic Regression is
+binary, unregularized, and uses fixed updates and a fixed 0.5 threshold;
+preprocessing remains the caller's responsibility. Cross-validation measures
+variation within these training partitions, not performance on new populations.
+There is no hyperparameter search or clinical validation.
 
-- Both models have linear structure. Logistic Regression supports binary
-  labels only, with a fixed threshold, fixed iteration count, no
-  regularization, and no automatic feature scaling or early stopping.
-  Its documented input checks and numerical safeguards do not guarantee
-  convergence for arbitrary unscaled data or learning rates.
-- The notebook results come from one fixed holdout split, without
-  cross-validation or hyperparameter search. They do not establish performance
-  across splits or new populations. These are scope limitations, not missing
-  requirements in the supplied rubric.
-- The README lists the five group members. Individual roles and
-  contributions are not assigned in this documentation.
-- Rehearse and deliver the final presentation, using the actual metrics and
-  repository walkthrough. A prepared script alone does not satisfy delivery.
+Local validation used macOS/Python 3.11.4; published CI verifies Ubuntu/Python
+3.12. Other declared Python versions and platforms were not tested. Initial
+dependency installation needs package-index access or a populated cache;
+notebook execution needs no external datasets or downloads.
 
-The technical project is ready for submission review. Presentation delivery
-remains necessary to finish the supplied requirements; no additional algorithm
-or infrastructure is needed for them.
+The reviewed project is technically ready for submission review. The local
+corrections must still be approved, committed, and published before GitHub
+contains this integrated documentation. No presentation delivery remains due.

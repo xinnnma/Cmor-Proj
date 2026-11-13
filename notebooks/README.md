@@ -45,8 +45,8 @@ To make the environment explicit for Jupyter's command-line tools, register
 the project kernel on your machine and then execute all four notebooks:
 
 ```bash
-uv run python -m ipykernel install --user --name mlforge --display-name "Python (MLForge)"
-uv run jupyter nbconvert --to notebook --execute --inplace \
+uv run --locked python -m ipykernel install --user --name mlforge --display-name "Python (MLForge)"
+uv run --locked jupyter nbconvert --to notebook --execute --inplace \
   --ExecutePreprocessor.kernel_name=mlforge \
   --ExecutePreprocessor.timeout=180 notebooks/*.ipynb
 ```
@@ -86,7 +86,14 @@ three for Linear Regression, three for Logistic Regression, and one for cross-va
 | --- | --- |
 | Linear Regression | R² **0.4526**, MSE **2900.1936**, RMSE **53.8534**, and MAE **42.7941** on 89 test rows. The training-mean baseline has MAE **64.0065** and RMSE **73.2225**. |
 | Logistic Regression | Accuracy **96.49%** (110/114), macro F1 **0.9627**, and malignant-class recall **0.9762**. |
-| Cross-validation | Five-fold training-partition comparisons report validation scores for both models and their simple baselines, including mean scores and fold standard deviations. |
+| Cross-validation | Diabetes validation R² **0.4804 ± 0.0457** versus mean baseline R² **−0.0273**; Breast Cancer validation accuracy **0.9780 ± 0.0110** versus majority baseline **0.6264**. Final holdout checks reproduce R² **0.4526** and accuracy **96.49%**. |
+
+Cross-validation uses 353 Diabetes training rows (validation fold sizes
+71, 71, 71, 70, 70) and 455 Breast Cancer training rows (91 per validation
+fold). Each training row is validated exactly once, while the 89 and 114
+outer test rows remain excluded from every fold. Each baseline uses its
+fold's training labels only. The ± values are sample standard deviations
+across folds (`ddof=1`), not confidence intervals.
 
 R² and accuracy measure different tasks. R² compares regression squared error
 with a test-mean baseline; accuracy counts correct binary labels. The Breast
