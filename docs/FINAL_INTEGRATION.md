@@ -1,7 +1,12 @@
 # MLForge — Final integration report
 
-Review date: **November 13, 2026**. All changes described here are local and
-uncommitted on `final-integration`, awaiting approval before publication.
+Review date: **November 13, 2026**. The reviewed integration was committed as
+`48e2492c8dbda72109e4794316b18d1b6bd9e20a` and published in
+[PR #2 — Finalize MLForge group project integration](https://github.com/xinnnma/Cmor-Proj/pull/2).
+The user approved a normal merge commit, preserving the existing history.
+The PR records the final merge status, merge commit, and associated CI checks.
+The repository synchronization and review details below describe the original
+pre-publication snapshot; the project metrics and contribution evidence remain current.
 
 ## Repository and synchronization
 
@@ -12,11 +17,12 @@ uncommitted on `final-integration`, awaiting approval before publication.
   `git pull --ff-only origin main` advanced it to
   **`0e3e7096218b985c59c52420caa3a7e644d3bf6e`**
   ([published commit](https://github.com/xinnnma/Cmor-Proj/commit/0e3e7096218b985c59c52420caa3a7e644d3bf6e)).
-- `final-integration` was created from that latest main. Local `main`,
-  `origin/main`, and the integration branch's committed HEAD share that commit.
+- `final-integration` was created from that latest main. At the original review,
+  local `main`, `origin/main`, and the integration branch's HEAD shared that commit.
   Git history contains 25 commits through it, including the original merge.
-- No commits were created, rewritten, or squashed; no author identity was
-  changed. No merge into main, push, or remote write was performed.
+- At the original review, no integration commit, push, or remote write had
+  occurred. Publication subsequently added the integration commit above.
+  Historical commits and author identities were preserved without rewriting or squashing.
 
 ## Verified contributions
 
@@ -32,7 +38,7 @@ inferring individual effort from commit counts.
 | Jenny | `xc61-tech` (`xc61@rice.edu`), branch `jenny_cross_validation` | Five-fold cross-validation notebook and contribution notes (`6073d71`); moved notebook into `notebooks/` (`70bbfcd`), removed its duplicate (`7c307c9`); a small roster edit (`0f6b422`). |
 | Freya | `Freya Yao` (`fy23@rice.edu`) | README revisions and restoration (`71db905`, `f5e2748`); substantive descriptions of all test files and pytest collection guidance (`d4dd0e6`); removed the obsolete presentation requirement from README (`a931810`). The testing guidance remains in the final README. |
 
-GitHub lists one pull request:
+At the original review, GitHub listed one pull request:
 [PR #1 — 5-fold cross-validation experiments](https://github.com/xinnnma/Cmor-Proj/pull/1),
 opened by `xc61-tech` and merged at `1a85adb` on November 13, 2026.
 The other reviewed updates are direct commits on main; they are not described
@@ -150,9 +156,12 @@ Pytest collects all three test modules from `tests/`.
 For the exact reviewed head `0e3e709`, the `test` check completed with
 **success** in [run 43503882226](https://github.com/xinnnma/Cmor-Proj/actions/runs/43503882226)
 ([job](https://github.com/xinnnma/Cmor-Proj/actions/runs/43503882226/job/132156372858)).
-This is the check-run result, not an inference from a badge. The unpublished
-local corrections have no GitHub run yet. Builds and notebook execution are
-local validations rather than steps in the current workflow.
+This was the check-run result for the audited base. Publication checks also
+passed for integration commit `48e2492`: [branch run](https://github.com/xinnnma/Cmor-Proj/actions/runs/43525275470)
+and [PR run](https://github.com/xinnnma/Cmor-Proj/actions/runs/43525352870).
+Checks for the final PR head and merged main are recorded in
+[GitHub Actions](https://github.com/xinnnma/Cmor-Proj/actions/workflows/ci.yml).
+Builds and notebook execution are local validations rather than workflow steps.
 
 ## Rubric assessment and remaining issues
 
@@ -177,28 +186,27 @@ were not measured. Initial dependency installation needs index access or a
 populated cache. The archived contribution pack's L2 and additional notebooks
 were proposals, not current deliverables.
 
-The repository is ready for submission review once these local corrections
-are approved and published. No presentation is required, based on the
-team-provided instructor update.
+The validated project is ready for submission after the approved PR merge
+and successful Actions checks on merged main. The publication record is
+[PR #2](https://github.com/xinnnma/Cmor-Proj/pull/2). No presentation is required,
+based on the team-provided instructor update.
 
-## Exact Git changes awaiting approval
+## Reviewed integration change set
 
-The file table above is the complete intended change set: nine modified
-tracked files, one note moved with a historical header, and this new report.
-Git initially displays the unstaged move as one deleted source path and one
-untracked destination; the original note text is preserved verbatim after
-the archive header. Review with:
+The file table above records the approved change set: nine modified tracked
+files, one note moved with a historical header, and this report. Publication
+also corrects the report's status and the agent instructions' integration
+status. The original note text is preserved verbatim after the archive header.
+Review the committed integration and complete PR changes with:
 
 ```bash
 git status --short --branch
-git diff --check
-git diff --stat
-git diff
-git diff --no-index /dev/null docs/FINAL_INTEGRATION.md
-git diff --no-index /dev/null docs/CROSS_VALIDATION_CONTRIBUTION_NOTES.txt
+git show --stat 48e2492
+git diff --check 0e3e709 final-integration
+git diff --stat 0e3e709 final-integration
+git diff 0e3e709 final-integration
 ```
 
-The two `--no-index` commands return exit code 1 when displaying new content.
 Temporary execution evidence, figures, kernel files, build archives, and
 wheel-validation environment stay ignored under `.uv-cache/final-integration/`.
-Nothing is staged. **Stop here for approval before any commit, merge, or push.**
+Subsequent project changes require new explicit instructions.
