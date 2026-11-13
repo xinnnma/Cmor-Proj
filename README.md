@@ -14,7 +14,7 @@ and evaluation on held-out data, with saved results and figures.
 - Xin
 - Huishan
 - Sandy
-- Jenny
+- Jenny 
 - Freya
 
 ## Project contents
