@@ -6,8 +6,9 @@ to build a small, understandable Python machine learning package and explain
 its use through Jupyter notebooks.
 
 The package provides NumPy Linear Regression and binary Logistic Regression.
-Three executed notebooks demonstrate exploration, preprocessing, modeling,
-and evaluation on held-out data, with saved results and figures.
+Four executed notebooks demonstrate exploration, preprocessing, modeling,
+held-out evaluation, and five-fold cross-validation, with saved results
+and figures.
 
 ## Group Members
 
@@ -20,7 +21,7 @@ and evaluation on held-out data, with saved results and figures.
 ## Project contents
 
 - Two reusable estimators implemented with NumPy, without scikit-learn models.
-- Three independent Jupyter notebooks with eight saved figures.
+- Four independent Jupyter notebooks with ten saved figures.
 - 156 pytest tests covering numerical results, input validation, and edge cases.
 - Installation and usage examples, a final audit, and presentation notes.
 
@@ -49,7 +50,8 @@ MLForge/
 │   ├── README.md
 │   ├── 01_data_exploration.ipynb
 │   ├── 02_linear_regression.ipynb
-│   └── 03_logistic_regression.ipynb
+│   ├── 03_logistic_regression.ipynb
+│   └── 04_cross_validation.ipynb
 └── tests/
     ├── test_linear_regression.py
     ├── test_logistic_regression.py
@@ -211,9 +213,10 @@ range raises `ValueError` with guidance to scale inputs or reduce the step size.
 
 | Notebook | Dataset | Demonstrates |
 | --- | --- | --- |
-| [01_data_exploration.ipynb](notebooks/01_data_exploration.ipynb) | Diabetes | Dimensions, descriptive statistics, missing values, plots, splitting, and scaling. |
-| [02_linear_regression.ipynb](notebooks/02_linear_regression.ipynb) | Diabetes | MLForge least squares, R², MSE, RMSE, and actual-versus-predicted values. |
-| [03_logistic_regression.ipynb](notebooks/03_logistic_regression.ipynb) | Breast Cancer | MLForge binary classification, probabilities, accuracy, confusion matrix, and training loss. |
+| [01_data_exploration.ipynb](notebooks/01_data_exploration.ipynb) | Diabetes | Descriptive statistics, missing-value checks, plots, splitting, and training-only scaling. |
+| [02_linear_regression.ipynb](notebooks/02_linear_regression.ipynb) | Diabetes | MLForge least squares, R², MSE, RMSE, MAE, prediction and residual plots, and a training-mean baseline comparison. |
+| [03_logistic_regression.ipynb](notebooks/03_logistic_regression.ipynb) | Breast Cancer | MLForge binary classification, probabilities, accuracy, class-level precision, recall, F1, confusion matrix, and training loss. |
+| [04_cross_validation.ipynb](notebooks/04_cross_validation.ipynb) | Diabetes and Breast Cancer | Five-fold cross-validation within the training partition, fold-specific scaling, simple baselines, and variation across folds. |
 
 Install all notebook dependencies with `uv sync --locked --dev`. In VS Code,
 open MLForge, use the Python and Jupyter extensions, open a notebook, and choose
@@ -229,16 +232,17 @@ is stratified. Scikit-learn supplies datasets and utilities; MLForge supplies
 both trained models. Outputs and figures are saved for GitHub viewing.
 
 See [notebooks/README.md](notebooks/README.md) for terminal execution,
-environment setup, and reproducibility details. These demonstrations use one
-fixed train/test split, so their scores do not measure performance across all
-possible splits or populations.
+environment setup, and reproducibility details. Notebooks 01–03 use a fixed
+train/test split. Notebook 04 adds five-fold cross-validation within the
+training partition, fitting a fresh scaler and model in each fold.
+These results do not establish performance on new populations.
 
 ### Recorded results
 
 | Model and dataset | Training / test rows | Held-out results |
 | --- | --- | --- |
-| Linear Regression — Diabetes | 353 / 89 | R² **0.4526**, MSE **2900.1936**, RMSE **53.8534**. |
-| Logistic Regression — Breast Cancer | 455 / 114 | Accuracy **96.49%** (110 of 114 predictions correct). |
+| Linear Regression — Diabetes | 353 / 89 | R² **0.4526**, MSE **2900.1936**, RMSE **53.8534**, MAE **42.7941**. Training-mean baseline: MAE **64.0065**, RMSE **73.2225**. |
+| Logistic Regression — Breast Cancer | 455 / 114 | Accuracy **96.49%** (110/114), macro F1 **0.9627**, malignant-class recall **0.9762**. |
 
 R² compares squared prediction error with predicting the test target mean;
 accuracy measures the fraction of correct class labels. These scores describe
