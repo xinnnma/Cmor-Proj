@@ -7,8 +7,9 @@ copied into notebooks or replaced by scikit-learn estimators.
 | Notebook | Purpose |
 | --- | --- |
 | [01_data_exploration.ipynb](01_data_exploration.ipynb) | Explore raw Diabetes features, inspect statistics and missing values, visualize relationships, and demonstrate training-only scaling. |
-| [02_linear_regression.ipynb](02_linear_regression.ipynb) | Train MLForge Linear Regression on Diabetes and evaluate test R², MSE, RMSE, and prediction plots. |
-| [03_logistic_regression.ipynb](03_logistic_regression.ipynb) | Train MLForge Logistic Regression on Breast Cancer and inspect probabilities, accuracy, confusion matrix, and cross-entropy loss. |
+| [02_linear_regression.ipynb](02_linear_regression.ipynb) | Train MLForge Linear Regression on Diabetes; evaluate R², MSE, RMSE and MAE; inspect prediction and residual plots; compare with a training-mean baseline. |
+| [03_logistic_regression.ipynb](03_logistic_regression.ipynb) | Train MLForge Logistic Regression on Breast Cancer; inspect probabilities, accuracy, class-level precision, recall, F1, the confusion matrix and training loss. |
+| [04_cross_validation.ipynb](04_cross_validation.ipynb) | Evaluate both models with five-fold cross-validation on the training partition, fit preprocessing separately within each fold, and compare against simple baselines. |
 
 ## Install the environment
 
@@ -27,7 +28,7 @@ notebooks afterward does not need internet or dataset downloads.
 ## Run in VS Code
 
 1. Open the MLForge folder and use the Python and Jupyter extensions.
-2. Open any of the three notebooks.
+2. Open any of the four notebooks.
 3. In **Select Kernel**, choose **Python Environments** and the interpreter
    inside MLForge's `.venv` folder.
 4. Restart the kernel and choose **Run All**. Save the notebook to retain
@@ -41,7 +42,7 @@ Do not add source directories to `sys.path` or copy model code into a notebook.
 ## Optional terminal execution
 
 To make the environment explicit for Jupyter's command-line tools, register
-the project kernel on your machine and then execute all three notebooks:
+the project kernel on your machine and then execute all four notebooks:
 
 ```bash
 uv run python -m ipykernel install --user --name mlforge --display-name "Python (MLForge)"
@@ -51,7 +52,7 @@ uv run jupyter nbconvert --to notebook --execute --inplace \
 ```
 
 Kernel registration is local to your machine. The execution command updates
-the saved outputs in the three notebook files. The same notebooks can also
+the saved outputs in the four notebook files. The same notebooks can also
 be run interactively in VS Code without registering a command-line kernel.
 
 ## Reproducibility and data handling
@@ -71,18 +72,21 @@ be run interactively in VS Code without registering a command-line kernel.
   Exact plot appearance may vary by platform; numerical results should agree
   within ordinary floating-point tolerances in the locked environment.
 
-These are demonstrations on one fixed split, without cross-validation or
-hyperparameter searches. They do not establish performance on new populations.
+Notebooks 01–03 use one fixed train/test split. Notebook 04 adds five-fold cross-validation
+within the training partition, with a fresh scaler and model fitted in each fold.
+It does not perform a hyperparameter search. These demonstrations do not establish
+performance on new populations.
 
 ## Reading the saved results
 
-The notebooks contain eight figures in total: three for exploration, two for
-Linear Regression, and three for Logistic Regression.
+The four notebooks contain ten figures in total: three for data exploration,
+three for Linear Regression, three for Logistic Regression, and one for cross-validation.
 
 | Notebook | Saved evaluation results |
 | --- | --- |
-| Linear Regression | R² **0.4526**, MSE **2900.1936**, and RMSE **53.8534** on 89 test rows. |
-| Logistic Regression | Accuracy **96.49%**, or 110 correct predictions out of 114 test rows. |
+| Linear Regression | R² **0.4526**, MSE **2900.1936**, RMSE **53.8534**, and MAE **42.7941** on 89 test rows. The training-mean baseline has MAE **64.0065** and RMSE **73.2225**. |
+| Logistic Regression | Accuracy **96.49%** (110/114), macro F1 **0.9627**, and malignant-class recall **0.9762**. |
+| Cross-validation | Five-fold training-partition comparisons report validation scores for both models and their simple baselines, including mean scores and fold standard deviations. |
 
 R² and accuracy measure different tasks. R² compares regression squared error
 with a test-mean baseline; accuracy counts correct binary labels. The Breast
