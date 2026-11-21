@@ -2,7 +2,7 @@
 
 This document synthesizes the original two-model project and the additions-only
 analysis. It does not modify or repair the original implementations. Read it with
-[PROJECT_GUIDE.md](../PROJECT_GUIDE.md) and [DATASETS.md](DATASETS.md).
+[the notebook guide](../notebooks/README.md) and [DATASETS.md](DATASETS.md).
 
 ## Research questions and findings
 
