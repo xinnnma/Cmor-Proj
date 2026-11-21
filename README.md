@@ -52,8 +52,10 @@ MLForge/
 ├── uv.lock
 ├── docs/
 │   ├── CROSS_VALIDATION_CONTRIBUTION_NOTES.txt
+│   ├── DATASETS.md
 │   ├── FINAL_AUDIT.md
 │   ├── FINAL_INTEGRATION.md
+│   ├── FINDINGS_AND_LIMITATIONS.md
 │   └── PRESENTATION.md
 ├── src/
 │   └── mlforge/
@@ -65,12 +67,15 @@ MLForge/
 │   ├── 01_data_exploration.ipynb
 │   ├── 02_linear_regression.ipynb
 │   ├── 03_logistic_regression.ipynb
-│   └── 04_cross_validation.ipynb
+│   ├── 04_cross_validation.ipynb
+│   ├── 05_model_mathematics.ipynb
+│   └── 06_extended_evaluation.ipynb
 └── tests/
     ├── README.md
     ├── test_linear_regression.py
     ├── test_logistic_regression.py
-    └── test_reference_consistency.py
+    ├── test_reference_consistency.py
+    └── test_additional_mathematics.py
 ```
 
 `src/mlforge/` holds reusable package code. `notebooks/` contains the course
@@ -232,6 +237,8 @@ range raises `ValueError` with guidance to scale inputs or reduce the step size.
 | [02_linear_regression.ipynb](notebooks/02_linear_regression.ipynb) | Diabetes | MLForge least squares, R², MSE, RMSE, MAE, prediction and residual plots, and a training-mean baseline comparison. |
 | [03_logistic_regression.ipynb](notebooks/03_logistic_regression.ipynb) | Breast Cancer | MLForge binary classification, probabilities, accuracy, class-level precision, recall, F1, confusion matrix, and training loss. |
 | [04_cross_validation.ipynb](notebooks/04_cross_validation.ipynb) | Diabetes and Breast Cancer | Five-fold cross-validation within the training partition, fold-specific scaling, simple baselines, and variation across folds. |
+| [05_model_mathematics.ipynb](notebooks/05_model_mathematics.ipynb) | Diabetes and synthetic data | Least-squares geometry, feature scaling, coefficient interpretation, and numerical checks of logistic regression gradients. |
+| [06_extended_evaluation.ipynb](notebooks/06_extended_evaluation.ipynb) | Diabetes and Breast Cancer | Probability quality, ROC and calibration plots, threshold tradeoffs, and expanded cross-validation metrics. |
 
 Install all notebook dependencies with `uv sync --locked --dev`. In VS Code,
 open MLForge, use the Python and Jupyter extensions, open a notebook, and choose
@@ -304,6 +311,10 @@ The tests live in `tests/` and are grouped by file:
   reference calculations on deterministic synthetic data: `numpy.linalg.lstsq`
   for correlated and rank-deficient Linear Regression designs, and loss
   decrease and probability validity for Logistic Regression.
+- `test_additional_mathematics.py` adds ten test cases checking least-squares
+  residual orthogonality, prediction invariance under affine feature scaling
+  for full-rank designs, and logistic gradient updates against numerical
+  derivatives and an independent two-step calculation.
 
 Datasets are deterministic, and numerical assertions use floating-point
 tolerances. The models and unit tests do not rely on scikit-learn; the
