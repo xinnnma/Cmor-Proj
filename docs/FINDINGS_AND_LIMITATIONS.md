@@ -137,12 +137,12 @@ uploaded ZIP plus these seven new repository files, not the live main branch.
 - Existing workflow is unchanged. No remote CI, commit, push, merge or public
   repository visibility check is claimed by this supplement.
 
-Before submission, run the default notebook command in PROJECT_GUIDE.md on a
-machine permitting kernels, and review the results yourself. Additional tests
-check residual orthogonality (two cases), full-rank affine scaling invariance
-(one), gradients recovered from public updates (six) and an independent two-step
-recurrence (one). They do not import or require the earlier revision's private
-helper and do not claim to fix the numerical defect.
+Before submission, follow the notebook execution instructions in
+[the notebook guide](../notebooks/README.md) and review the resulting
+tables and figures. Additional tests check residual orthogonality (two cases), 
+full-rank affine scaling invariance (one), gradients recovered from public updates
+(six) and an independent two-step recurrence (one). They do not import or require 
+the earlier revision's private helper and do not claim to fix the numerical defect.
 
 The original README's 156-test/four-notebook counts describe the original project.
 With this supplement the total is 166 cases and six notebooks. Historical records
