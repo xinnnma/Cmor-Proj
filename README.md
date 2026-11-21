@@ -6,9 +6,9 @@ to build a small, understandable Python machine learning package and explain
 its use through Jupyter notebooks.
 
 The package provides NumPy Linear Regression and binary Logistic Regression.
-Four executed notebooks demonstrate exploration, preprocessing, modeling,
-held-out evaluation, and five-fold cross-validation, with saved results
-and figures.
+Six notebooks cover data exploration, preprocessing, modeling,
+held-out evaluation, cross-validation, model mathematics, and extended
+evaluation, with saved results and figures.
 
 ## Group Members
 
@@ -27,8 +27,8 @@ and testing guidance. Commit evidence appears in the
 ## Project contents
 
 - Two reusable estimators implemented with NumPy, without scikit-learn models.
-- Four independent Jupyter notebooks with ten saved figures.
-- 156 pytest tests covering numerical results, input validation, and edge cases.
+- Six independent Jupyter notebooks with twelve saved figures.
+- 166 pytest test cases covering numerical results, input validation, edge cases, and mathematical properties.
 - Installation and usage examples, a final audit, and an integration report.
 
 The final deliverable is this GitHub repository. No presentation is required,
