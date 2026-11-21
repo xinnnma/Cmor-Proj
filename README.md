@@ -325,8 +325,9 @@ package, and put them in `tests/`. Pytest only collects from that folder, so
 a test file placed elsewhere will not run in CI. Add real tests alongside
 future algorithms; do not add placeholder passing tests.
 
-The current verified suite has **156 passing cases**: 57 Linear Regression,
-95 Logistic Regression, and four reference checks. [GitHub Actions](.github/workflows/ci.yml)
+The suite contains **166 test cases**: 57 Linear Regression,
+95 Logistic Regression, four reference checks, and ten additional
+mathematical checks. [GitHub Actions](.github/workflows/ci.yml)
 installs the locked environment, checks both imports, and runs the complete
 suite on Ubuntu with Python 3.12. The [final audit](docs/FINAL_AUDIT.md)
 maps validation to the rubric; the [integration report](docs/FINAL_INTEGRATION.md)
