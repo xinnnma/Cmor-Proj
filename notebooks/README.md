@@ -10,6 +10,8 @@ copied into notebooks or replaced by scikit-learn estimators.
 | [02_linear_regression.ipynb](02_linear_regression.ipynb) | Train MLForge Linear Regression on Diabetes; evaluate R², MSE, RMSE and MAE; inspect prediction and residual plots; compare with a training-mean baseline. |
 | [03_logistic_regression.ipynb](03_logistic_regression.ipynb) | Train MLForge Logistic Regression on Breast Cancer; inspect probabilities, accuracy, class-level precision, recall, F1, the confusion matrix and training loss. |
 | [04_cross_validation.ipynb](04_cross_validation.ipynb) | Evaluate both models with five-fold cross-validation on the training partition, fit preprocessing separately within each fold, and compare against simple baselines. |
+| [05_model_mathematics.ipynb](05_model_mathematics.ipynb) | Examine least-squares geometry, feature scaling, coefficient interpretation, and numerical checks of logistic regression gradients. |
+| [06_extended_evaluation.ipynb](06_extended_evaluation.ipynb) | Evaluate probability quality, ROC and calibration plots, threshold tradeoffs, and expanded cross-validation metrics. |
 
 ## Install the environment
 
@@ -28,7 +30,7 @@ notebooks afterward does not need internet or dataset downloads.
 ## Run in VS Code
 
 1. Open the MLForge folder and use the Python and Jupyter extensions.
-2. Open any of the four notebooks.
+2. Open any of the six notebooks.
 3. In **Select Kernel**, choose **Python Environments** and the interpreter
    inside MLForge's `.venv` folder.
 4. Restart the kernel and choose **Run All**. Save the notebook to retain
@@ -42,7 +44,7 @@ Do not add source directories to `sys.path` or copy model code into a notebook.
 ## Optional terminal execution
 
 To make the environment explicit for Jupyter's command-line tools, register
-the project kernel on your machine and then execute all four notebooks:
+the project kernel on your machine and then execute all six notebooks:
 
 ```bash
 uv run --locked python -m ipykernel install --user --name mlforge --display-name "Python (MLForge)"
@@ -52,7 +54,7 @@ uv run --locked jupyter nbconvert --to notebook --execute --inplace \
 ```
 
 Kernel registration is local to your machine. The execution command updates
-the saved outputs in the four notebook files. The same notebooks can also
+the saved outputs in the six notebook files. The same notebooks can also
 be run interactively in VS Code without registering a command-line kernel.
 
 ## Reproducibility and data handling
@@ -72,15 +74,25 @@ be run interactively in VS Code without registering a command-line kernel.
   Exact plot appearance may vary by platform; numerical results should agree
   within ordinary floating-point tolerances in the locked environment.
 
-Notebooks 01–03 use one fixed train/test split. Notebook 04 adds five-fold cross-validation
-within the training partition, with a fresh scaler and model fitted in each fold.
-It does not perform a hyperparameter search. These demonstrations do not establish
+Notebooks 01–03 use a fixed train/test split. Notebook 04 adds
+five-fold cross-validation within the training partition, fitting
+a fresh scaler and model in each fold. Notebook 05 examines model
+mathematics using training data and synthetic examples.
+
+Notebook 06 evaluates probability quality and fixed threshold examples
+on an inner validation split, and expands the cross-validation metrics.
+It excludes the original test observations from these new evaluations.
+No hyperparameter or threshold is selected. The original holdout
+results had already been viewed before these additions; they are not
+a new independent test. These demonstrations do not establish
 performance on new populations.
 
 ## Reading the saved results
 
-The four notebooks contain ten figures in total: three for data exploration,
-three for Linear Regression, three for Logistic Regression, and one for cross-validation.
+The six notebooks contain twelve figures in total: three for data
+exploration, three for Linear Regression, three for Logistic Regression,
+one for cross-validation, and two for extended evaluation. The model
+mathematics notebook contains numerical tables rather than figures.
 
 | Notebook | Saved evaluation results |
 | --- | --- |
